@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="addresses.js"></script>
+
+    <style>
+        li {
+            list-style: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="one-address"><h2>One Address:</h2></div>
+    <div id="many-addresses"><h2>List of Addresses in an array:</h2></div>
+
+    <script>
+        document.getElementById("one-address").innerHTML += "<strong>Full address:</strong><br>" + Address.name + "<br>" + 
+                                                            Address.street1 + "<br>" + 
+                                                            Address.street2 + "<br>" + 
+                                                            Address.city + ", " + Address.state + " " + Address.zipCode + "<br><br>";
+
+        document.getElementById("one-address").innerHTML += "<strong>First street line:</strong> " + Address.street1 + "<br>";
+        document.getElementById("one-address").innerHTML += "<strong>Just city:</strong> " + Address.city + "<br><br>";
+
+
+
+
+        document.getElementById("many-addresses").innerHTML += "<strong>List of addresses:</strong><ul>";
+        
+        for (let x in AddressList) {
+            document.getElementById("many-addresses").innerHTML += "<li>" + AddressList[x].name + "<br>" + AddressList[x].street1 + "<br>";
+
+            // Check if street2 is empty
+            if (AddressList[x].street2 != "") {
+                document.getElementById("many-addresses").innerHTML += AddressList[x].street2 + "<br>";
+            }
+            
+            document.getElementById("many-addresses").innerHTML += AddressList[x].city + ", " + AddressList[x].state + " " + AddressList[x].zipCode + "</li>";
+        }
+
+        document.getElementById("many-addresses").innerHTML += "</ul><br><br>";
+
+
+        
+
+        document.getElementById("many-addresses").innerHTML += "<strong>Grabbing a matching name - looking for \"Kennedy\":</strong><ul>";
+
+            for (let x in AddressList) {
+            
+            // Check for match first and only print when there is one
+            // indexOf() is a function that looks for a matching substring and if it's not there, it's -1
+            if (AddressList[x].name.indexOf("Kennedy") != -1) {
+                document.getElementById("many-addresses").innerHTML += "<li>" + AddressList[x].name + "<br>" + AddressList[x].street1 + "<br>";
+
+                // Check if street2 is empty
+                if (AddressList[x].street2 != "") {
+                    document.getElementById("many-addresses").innerHTML += AddressList[x].street2 + "<br>";
+                }
+
+                document.getElementById("many-addresses").innerHTML += AddressList[x].city + ", " + AddressList[x].state + " " + AddressList[x].zipCode + "</li>";
+            }
+        }
+
+        document.getElementById("many-addresses").innerHTML += "</ul>";
+
+        
+    </script>
+</body>
+</html>
